@@ -20,3 +20,6 @@ class UserSerializer(serializers.ModelSerializer):
             is_librarian=validated_data.get('is_librarian', False),
         )
         return user
+
+
+

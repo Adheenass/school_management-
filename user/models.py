@@ -2,7 +2,6 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
 
-
 class User(AbstractUser):
     # Gender choices for the gender field
     GENDER_CHOICES = (
@@ -11,19 +10,19 @@ class User(AbstractUser):
         ('O', 'Other'),
     )
     ROLE_CHOICES = [
-        ('superuser', 'Superuser'),
+        ('student', 'Student'),
         ('admin', 'Admin'),
         ('officestaff', 'Office Staff'),
         ('librarian', 'Librarian'),
     ]
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='officestaff')
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
 
   # Role fields
     is_office_staff = models.BooleanField(default=False)
     is_librarian = models.BooleanField(default=False)
 
     # Personal details
-    employee_id = models.CharField(
+    user_id = models.CharField(
         max_length=50, unique=True, help_text="Unique ID for the librarian", blank=True, null=True
     )
     full_name = models.CharField(max_length=255, blank=True, null=True)
@@ -66,3 +65,4 @@ class User(AbstractUser):
         return f"{self.email} - {self.role}"
 
     
+
